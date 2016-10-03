@@ -5,10 +5,10 @@ import java.util.Map;
 
 public class ReferencesFactory {
     private Map<String, Integer> references;
-
     private int reference;
-
-    public ReferencesFactory() {
+    private static ReferencesFactory referencesFactory;
+    
+    private ReferencesFactory() {
         this.references = new HashMap<>();
         this.reference = 0;
     }
@@ -27,5 +27,11 @@ public class ReferencesFactory {
         this.references.remove(key);
     }
 
+    public static ReferencesFactory getFactory(){
+        if(ReferencesFactory.referencesFactory == null){
+            referencesFactory = new ReferencesFactory();
+        }
+        return referencesFactory;
+    }
     
 }
