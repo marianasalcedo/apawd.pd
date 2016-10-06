@@ -1,4 +1,4 @@
-package es.upm.miw.pd.command.calculator;
+package es.upm.miw.pd.command.calculator.solution;
 
 public class Calculator {
     private int total;

@@ -1,4 +1,4 @@
-package es.upm.miw.pd.command.calculator;
+package es.upm.miw.pd.command.calculator.solution;
 
 import es.upm.miw.pd.command.calculator.solution.PrintCommand;
 import es.upm.miw.pd.command.calculator.solution.ResetCommand;
