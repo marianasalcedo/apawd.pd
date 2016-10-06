@@ -14,6 +14,7 @@ public abstract class CalculatorCommand implements Command {
 		return calculator;
 	}
 
+	@Override
 	public String name() {
 		return name;
 	}
