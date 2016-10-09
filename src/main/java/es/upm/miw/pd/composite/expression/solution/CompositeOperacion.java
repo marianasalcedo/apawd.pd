@@ -1,26 +1,23 @@
 package es.upm.miw.pd.composite.expression.solution;
 
-import java.util.ArrayList;
-import java.util.List;
 
 
 public abstract class CompositeOperacion extends ComponentExpresion{
     protected String operacion;
-    protected List<ComponentExpresion> lista;
+    protected ComponentExpresion leftArgument;
+    protected ComponentExpresion rightArgument;
 
-    public CompositeOperacion() {
-        this.lista = new ArrayList<ComponentExpresion>();
+    public CompositeOperacion(ComponentExpresion leftArgument, ComponentExpresion rightArgument){
+    	this.leftArgument = leftArgument;
+    	this.rightArgument = rightArgument;
     }
     
-    public abstract int getResult(int acumulado, ComponentExpresion subNodo);
+    public abstract int getResult(ComponentExpresion leftArgument, ComponentExpresion rightArgument);
     
-    @Override
+
+	@Override
     public int operar() {
-        int resultado = 0;
-        for (ComponentExpresion subNodo : this.lista) {
-            resultado = getResult(resultado, subNodo);
-        }
-        return resultado;
+        return getResult(leftArgument, rightArgument);
     }
 
 

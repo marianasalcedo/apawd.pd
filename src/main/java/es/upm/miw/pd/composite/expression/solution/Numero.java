@@ -15,7 +15,7 @@ public class Numero extends ComponentExpresion {
 
     @Override
     public String toString() {
-        return " " + this.numero + " ";
+        return this.numero + "";
     }
 
 }

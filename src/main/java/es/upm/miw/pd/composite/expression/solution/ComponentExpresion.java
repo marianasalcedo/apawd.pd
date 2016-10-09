@@ -4,6 +4,5 @@ public abstract class ComponentExpresion {
     
     public abstract int operar();
     public abstract String toString();
-
     
 }
