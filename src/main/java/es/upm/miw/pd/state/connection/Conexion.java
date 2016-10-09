@@ -10,6 +10,7 @@ public class Conexion {
         assert link != null;
         this.link = link;
         this.estado = Estado.CERRADO;
+        setState(new StateAbrir());
     }
 
     public Link getLink() {
@@ -20,87 +21,43 @@ public class Conexion {
         return this.estado;
     }
 
-    protected void setState(Estado state) {
-        this.estado = state;
+    protected void setEstado(Estado estado) {
+        this.estado = estado;
+    }
+    
+
+    protected void setState(State state) {
+        this.state = state;
     }
     
     public void abrir() {
-        if (this.estado == Estado.CERRADO) {
-            this.estado = Estado.PREPARADO;
-        } else if (this.estado == Estado.PARADO) {
-            throw new UnsupportedOperationException("Acción no permitida... ");
-        } else if (this.estado == Estado.PREPARADO) {
-        } else if (this.estado == Estado.ESPERANDO) {
-            throw new UnsupportedOperationException("Acción no permitida... ");
-        } else
-            assert false : "estado imposible";
+       setState(new StateAbrir());
+       this.state.abrir(this);
     }
 
     public void cerrar() {
-        if (this.estado == Estado.CERRADO) {
-        } else if (this.estado == Estado.PARADO) {
-            throw new UnsupportedOperationException("Acción no permitida... ");
-        } else if (this.estado == Estado.PREPARADO) {
-            this.estado = Estado.CERRADO;
-        } else if (this.estado == Estado.ESPERANDO) {
-            throw new UnsupportedOperationException("Acción no permitida... ");
-        }
-        assert false : "estado imposible";
+        setState(new StateCerrar());
+        this.state.cerrar(this);
     }
 
     public void parar() {
-        if (this.estado == Estado.CERRADO) {
-            throw new UnsupportedOperationException("Acción no permitida... ");
-        } else if (this.estado == Estado.PARADO) {
-        } else if (this.estado == Estado.PREPARADO) {
-            this.estado = Estado.PARADO;
-        } else if (this.estado == Estado.ESPERANDO) {
-            throw new UnsupportedOperationException("Acción no permitida... ");
-        }
-        assert false : "estado imposible";
+        setState(new StateParar());
+        this.state.parar(this);
     }
 
     public void iniciar() {
-        if (this.estado == Estado.CERRADO) {
-            throw new UnsupportedOperationException("Acción no permitida... ");
-        } else if (this.estado == Estado.PARADO) {
-            this.estado = Estado.PREPARADO;
-        } else if (this.estado == Estado.PREPARADO) {
-        } else if (this.estado == Estado.ESPERANDO) {
-            throw new UnsupportedOperationException("Acción no permitida... ");
-        }
-        assert false : "estado imposible";
+        setState(new StateIniciar());
+        this.state.iniciar(this);
     }
 
     public void enviar(String msg) {
-        if (this.estado == Estado.CERRADO) {
-            throw new UnsupportedOperationException("Acción no permitida... ");
-        } else if (this.estado == Estado.PARADO) {
-            throw new UnsupportedOperationException("Acción no permitida... ");
-        } else if (this.estado == Estado.PREPARADO) {
-            this.link.enviar(msg);
-            this.estado = Estado.ESPERANDO;
-        } else if (this.estado == Estado.ESPERANDO) {
-            throw new UnsupportedOperationException("Acción no permitida... ");
-        }
-        assert false : "estado imposible";
+        setState(new StateEnviar());
+        this.state.enviar(this, msg);
     }
 
     public void recibir(int respuesta) {
-        if (this.estado == Estado.CERRADO) {
-            throw new UnsupportedOperationException("Acción no permitida... ");
-        } else if (this.estado == Estado.PARADO) {
-            throw new UnsupportedOperationException("Acción no permitida... ");
-        } else if (this.estado == Estado.PREPARADO) {
-            throw new UnsupportedOperationException("Acción no permitida... ");
-        } else if (this.estado == Estado.ESPERANDO) {
-            if (respuesta == 0) {
-                this.estado = Estado.PREPARADO;
-            } else {
-                this.estado = Estado.CERRADO;
-            }
-        }
-        assert false : "estado imposible";
+        setState(new StateRecibir());
+        this.state.recibir(this, respuesta);
     }
 
 }
