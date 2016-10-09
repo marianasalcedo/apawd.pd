@@ -3,20 +3,20 @@ package es.upm.miw.pd.visitor.figure;
 public class Circle extends Figure {
 
     private double radius;
+    private static double SIDES_NUMBER = Double.POSITIVE_INFINITY;
 
     public Circle(String description, double radius) {
-        super(description);
+    	super(description);
         this.radius = radius;
+        this.sidesNumber = SIDES_NUMBER;
     }
 
+	public double getRadius() {
+		return radius;
+	}
+	
     @Override
-    public double area() {
-        return Math.PI * radius * radius;
+    public void accept(Visitor v) {
+        v.visitCircle(this);
     }
-
-    @Override
-    public double numberOfSides() {
-        return Double.POSITIVE_INFINITY;
-    }
-
 }
