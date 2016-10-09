@@ -1,19 +1,20 @@
 package es.upm.miw.pd.memento.calculator;
 
-import es.upm.miw.pd.command.calculator.solution.Calculator;
-import es.upm.miw.pd.command.calculator.solution.CalculatorCommand;
+import upm.jbb.IO;
 
-public class SaveCommand extends CalculatorCommand{
+public class SaveCommand extends MementoCommand{
 
-	private static String NAME= "Save";
+	private static String NAME = "Save";
 	
-	public SaveCommand(Calculator calculator) {
-		super(calculator, NAME);
+	public SaveCommand(LoggerCalculator calculator, LoggerManager<Log> loggerManager) {
+		super(calculator, NAME, loggerManager);
 	}
+	
 	@Override
 	public void execute() {
-		// TODO Auto-generated method stub
-		
+		String key = IO.getIO().readString("Como desea llamar esta entrada?: ");
+		Log log = this.getCalculator().createMemento();
+		this.getLoggerManager().addMemento(key, log);
 	}
 
 }
