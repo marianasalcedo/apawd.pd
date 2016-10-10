@@ -7,6 +7,15 @@ public class Contact {
 	private String phone;
 	
 	
+	public Contact(String email, String phone) {
+		this.email = email;
+		this.phone = phone;
+	}
+
+	public int getId() {
+		return id;
+	}
+
 	public String getEmail() {
 		return email;
 	}

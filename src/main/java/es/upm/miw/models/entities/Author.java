@@ -11,6 +11,13 @@ public class Author {
 	private Style style;
 	private List<Book> books;
 	
+	public Author(String surname, String name, Contact contact, Style style) {
+		this.surname = surname;
+		this.name = name;
+		this.contact = contact;
+		this.style = style;
+	}
+	
 	public String getSurname() {
 		return surname;
 	}

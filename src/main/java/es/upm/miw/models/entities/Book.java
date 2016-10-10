@@ -8,6 +8,12 @@ public class Book {
 	private String isbn;
 	private List<Theme> themes;
 	
+	public Book(int id, String isbn, List<Theme> themes) {
+		this.id = id;
+		this.isbn = isbn;
+		this.themes = themes;
+	}
+
 	public String getIsbn() {
 		return isbn;
 	}

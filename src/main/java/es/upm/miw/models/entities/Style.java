@@ -6,6 +6,12 @@ public class Style {
 	private String name;
 	private String description;
 	
+
+	public Style(String name, String description) {
+		this.name = name;
+		this.description = description;
+	}
+
 	public String getName() {
 		return name;
 	}
